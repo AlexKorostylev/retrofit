@@ -3,6 +3,7 @@ package com.retrofit.webcloaca;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.appsflyer.AppsFlyerLib;
@@ -71,7 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         //Создаем объект, при помощи которого будем выполнять запросы
         CloacaInterface requestLink = retrofit.create(CloacaInterface.class);
-        Call<LinkModel> call = requestLink.loadLink();
+        Call<LinkModel> call = requestLink.loadLink(
+                "com.site.getpost",
+                "ru",
+                "111111",
+                "2222222",
+                "9999999");
         try {
             requestRetrofit(call);
         } catch (IOException e){
@@ -90,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(Call<LinkModel> call, Throwable t) {
-                    //textTemp.setText("Error");
+                    Log.d("", "");
                 }
             });
         }
