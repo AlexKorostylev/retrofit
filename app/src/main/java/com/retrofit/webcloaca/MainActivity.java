@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 // Выполнение запроса и обработка ответа
                 // Открытие ссылки по запросу
                 //("http://185.178.47.229/API/and/?project=com.site.getpost12312&country=ru&apid=1111&gaid=2222222&deep=asdad");
-                initRetorfit(getPackage (), getCountry(), getApid(), getGaid(), getDeep());
+                initRetorfit(getPackage(), getCountry(), getApid(), getGaid(), getDeep());
             }
         }else {
             mWebView.loadUrl("");
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<LinkModel>() {
             @Override
             public void onResponse(Call<LinkModel> call, Response<LinkModel> response) {
-                if (response.body() != null) responseHandle(response);
+                if (response.body().getStatus() != null) responseHandle(response);
             }
 
             @Override
@@ -184,14 +184,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void responseHandle(@NonNull Response response) {
-        if (response.code() == 200) {
+    private void responseHandle(@NonNull Response<LinkModel> response) {
+        if (response.body().getStatus().equals("200")) {
             try {
-                mWebView.loadUrl(((LinkModel) (response.body())).getLink());
+                mWebView.loadUrl(response.body().getLink());
             } catch (NullPointerException e) {
                 Log.e("SERVER", "Incorrect link!");
             }
-        } else if (response.code() == 404) {
+        } else if (response.body().getStatus().equals("404")) {
             Toast.makeText(this, "Sorry", Toast.LENGTH_SHORT).show();
         }
     }
