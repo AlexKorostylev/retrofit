@@ -256,14 +256,14 @@ public class MainActivity extends AppCompatActivity {
     public String getPackage (){
         String PACKAGE = getApplicationContext().getPackageName().toLowerCase();
         //String PACKAGE = "com.site.getpost12312";
-        Toast.makeText(getApplicationContext(), PACKAGE, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), PACKAGE, Toast.LENGTH_SHORT).show();
         return PACKAGE;
     }
 
     // Имя страны
     public String getCountry(){
         String COUNTRY = Locale.getDefault().getCountry().toLowerCase();
-        Toast.makeText(getApplicationContext(), COUNTRY, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), COUNTRY, Toast.LENGTH_SHORT).show();
         return COUNTRY;
     }
 
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
     public String getApid(){
         String APID = AppsFlyerLib.getInstance().getAppsFlyerUID(this);
         //String APID = "1111";
-        Toast.makeText(getApplicationContext(), APID, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), APID, Toast.LENGTH_SHORT).show();
         return APID;
     }
 
@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
 
     // DEEP
     public String getDeep(){
-        String DEEP = "asdad";
+        String DEEP = "asd";
         return DEEP;
     }
 }
