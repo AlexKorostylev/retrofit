@@ -174,9 +174,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<LinkModel>() {
             @Override
             public void onResponse(Call<LinkModel> call, Response<LinkModel> response) {
-                if (response.body() != null) {
-                    responseHandle(response);
-                }
+                if (response.body() != null) responseHandle(response);
             }
 
             @Override
