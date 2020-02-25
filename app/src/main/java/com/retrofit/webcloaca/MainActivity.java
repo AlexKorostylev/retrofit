@@ -1,5 +1,6 @@
 package com.retrofit.webcloaca;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -173,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LinkModel> call, Response<LinkModel> response) {
                 if (response.body() != null) {
-                    mWebView.loadUrl(response.body().getLink());
+                    responseHandle(response);
                     String status = response.body().getStatus();
                     Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
                 }
@@ -184,6 +185,18 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("", "");
             }
         });
+    }
+
+    private void responseHandle(@NonNull Response response) {
+        if (response.code() == 200) {
+            try {
+                mWebView.loadUrl(((LinkModel) (response.body())).getLink());
+            } catch (NullPointerException e) {
+                Log.e("SERVER", "Incorrect link!");
+            }
+        } else if (response.code() == 404) {
+            Toast.makeText(this, "Sorry", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Webview. Сохранение состояния перед поворотом экрана
