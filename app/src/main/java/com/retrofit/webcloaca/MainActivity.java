@@ -29,6 +29,7 @@ import com.appsflyer.AppsFlyerLib;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -175,14 +176,12 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<LinkModel> call, Response<LinkModel> response) {
                 if (response.body() != null) {
                     responseHandle(response);
-                    String status = response.body().getStatus();
-                    Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LinkModel> call, Throwable t) {
-                Log.d("", "");
+                Log.d("CLIENT", Objects.requireNonNull(t.getMessage()));
             }
         });
     }
